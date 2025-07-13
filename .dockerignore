@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+*.db
+*.sqlite3
+.mypy_cache/
+.git/
+.idea/
+.vscode/
+*.log
+*.egg-info/
+migrations/

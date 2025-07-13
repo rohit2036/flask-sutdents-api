@@ -1,0 +1,29 @@
+# Byte-compiled files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+
+# Environment variables
+.env
+
+# Migrations (optional)
+migrations/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Python test cache
+*.pytest_cache/
+.coverage
+
+# Docker stuff
+*.log
+*.pid
+
