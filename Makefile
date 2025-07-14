@@ -25,7 +25,7 @@ docker-login:
 		echo "DOCKER_USERNAME or DOCKER_PASSWORD is not set"; \
 		exit 1; \
 	fi
-	echo "$(DOCKER_PASS)" | docker login -u "$(DOCKER_USER)" --password-stdin
+	echo "$(DOCKER_PASSWORD)" | docker login -u "$(DOCKER_USERNAME)" --password-stdin
 
 
 docker-build:
