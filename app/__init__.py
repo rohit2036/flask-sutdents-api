@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 db = SQLAlchemy()
 migrate = Migrate()
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -21,4 +22,3 @@ def create_app():
     app.register_blueprint(api_v1)
 
     return app
-
