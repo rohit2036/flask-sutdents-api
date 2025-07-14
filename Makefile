@@ -21,8 +21,8 @@ lint:
 
 docker-login:
 	@echo "Logging in to Docker Hub..."
-	@if [ -z "$(DOCKER_USER)" ] || [ -z "$(DOCKER_PASS)" ]; then \
-		echo "DOCKER_USER or DOCKER_PASS is not set"; \
+	@if [ -z "$(DOCKER_USERNAME)" ] || [ -z "$(DOCKER_PASSWORD)" ]; then \
+		echo "DOCKER_USERNAME or DOCKER_PASSWORD is not set"; \
 		exit 1; \
 	fi
 	echo "$(DOCKER_PASS)" | docker login -u "$(DOCKER_USER)" --password-stdin
