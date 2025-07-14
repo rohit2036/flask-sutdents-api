@@ -43,8 +43,8 @@ jobs:
       # Step 6: Docker login
       - name: Docker Login
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASS }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: echo "$DOCKER_PASS" | docker login -u "$DOCKER_USERE" --password-stdin
 
       # Step 7: Build Docker image
