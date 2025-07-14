@@ -20,7 +20,13 @@ lint:
 	flake8 app
 
 docker-login:
-	echo "$$DOCKER_PASS" | docker login -u "$$DOCKER_USER" --password-stdin
+	@echo "Logging in to Docker Hub..."
+	@if [ -z "$(DOCKER_USER)" ] || [ -z "$(DOCKER_PASS)" ]; then \
+		echo "DOCKER_USER or DOCKER_PASS is not set"; \
+		exit 1; \
+	fi
+	echo "$(DOCKER_PASS)" | docker login -u "$(DOCKER_USER)" --password-stdin
+
 
 docker-build:
 	docker build -t $(REGISTRY):$(TAG) .
