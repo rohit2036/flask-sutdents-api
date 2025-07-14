@@ -1,6 +1,6 @@
 IMAGE_NAME = one2n-api
 TAG = 1.0.0
-REGISTRY = yourdockerhubusername/$(IMAGE_NAME)
+REGISTRY = rohit2036/$(IMAGE_NAME)
 
 install:
 	pip install --upgrade pip
