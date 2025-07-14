@@ -53,4 +53,7 @@ jobs:
 
       # Step 8: Push Docker image
       - name: Docker Push
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: make docker-push
