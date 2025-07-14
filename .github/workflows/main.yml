@@ -1,6 +1,5 @@
 name: CI Pipeline
 
-# Triggers
 on:
   push:
     paths:
@@ -10,14 +9,14 @@ on:
 jobs:
   build-test-lint:
     name: Build, Test, Lint, Dockerize
-    runs-on: ubuntu-latest     # Use your local self-hosted runner
+    runs-on: ubuntu-latest   # Use GitHub-hosted runner
 
     steps:
       # Step 1: Checkout your repo
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Python (assumes Python project)
+      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -29,25 +28,27 @@ jobs:
           pip install -r requirements.txt
           pip install flake8 pytest
 
-      # Step 5: Run tests
+      # Step 4: Run tests (with PYTHONPATH set correctly)
       - name: Test
         run: make test
+        env:
+          PYTHONPATH: ${{ github.workspace }}/code
 
-      # Step 6: Lint the code
+      # Step 5: Lint the code
       - name: Lint
         run: make lint
 
-      # Step 7: Docker login (uses secrets)
+      # Step 6: Docker login
       - name: Docker Login
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-      # Step 8: Build Docker image
+      # Step 7: Build Docker image
       - name: Build Docker Image
         run: make docker-build
 
-      # Step 9: Push Docker image
+      # Step 8: Push Docker image
       - name: Docker Push
         run: make docker-push
