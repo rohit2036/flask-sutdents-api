@@ -5,9 +5,12 @@ from app.models import Student
 class StudentTestCase(unittest.TestCase):
     def setUp(self):
         self.app = create_app()
+        self.app.config.update({
+            'SQLALCHEMY_DATABASE_URI': 'sqlite://',
+            'TESTING': True
+        })
         self.client = self.app.test_client()
-        self.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
-        self.app.config['TESTING'] = True
+
         with self.app.app_context():
             db.create_all()
 
@@ -28,5 +31,5 @@ class StudentTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_healthcheck(self):
-        response = self.client.get('/healthcheck')
+        response = self.client.get('/api/v1/healthcheck')  # corrected path
         self.assertEqual(response.status_code, 200)
