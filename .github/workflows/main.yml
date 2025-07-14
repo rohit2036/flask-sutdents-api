@@ -22,17 +22,19 @@ jobs:
         with:
           python-version: '3.10'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install flake8 pytest
 
-      # Step 4: Run tests (with PYTHONPATH set correctly)
       - name: Test
-        run: make test
+        run: |
+          echo "PYTHONPATH: $PYTHONPATH"
+          python -c "import sys; print(sys.path)"
+          make test
         env:
-          PYTHONPATH: ${{ github.workspace }}/code
+          PYTHONPATH: ${{ github.workspace }}
+
 
       # Step 5: Lint the code
       - name: Lint
